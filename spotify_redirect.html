@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Spotify Redirect</title>
+  <script>
+    window.onload = function() {
+      // Parse query parameters from the URL
+      const params = new URLSearchParams(window.location.search);
+      const code = params.get("code");
+
+      // If we got the OAuth code from Spotify, redirect back to the app
+      if (code) {
+        // "allmusicplayer://spotify/callback" must match your AndroidManifest intent-filter
+        // so your app can handle the deep link.
+        window.location.href = "allmusicplayer://spotify/callback?code=" + code;
+      } else {
+        document.body.innerHTML = "<h2>No 'code' param from Spotify</h2>";
+      }
+    };
+  </script>
+</head>
+<body>
+  <h2>Redirecting from Spotify...</h2>
+</body>
+</html>
